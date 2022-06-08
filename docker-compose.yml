@@ -1,0 +1,69 @@
+version: '3.9' # Versio de docker compose
+services: # Dins aquest apartat s'han d'especificar els serveis que anem a utilitzar
+  sql-srv:
+    container_name: sql-srv
+    image: adriaprats/mssql-editor.cartas:03.06
+    restart: always
+    ports:
+      - 1433:1433
+    volumes:
+      - mssql_data:/var/opt/mssql/data
+    networks:
+      - app
+
+  webservice:
+    container_name: webservice
+    image: adriaprats/ubuntu_ws:08.06
+    restart: always
+    build:
+      context: . # Executa el Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - ./WebService:/var/www/html
+    networks:
+      - app
+
+  wordpress:
+    depends_on:
+      - database
+    image: wordpress:6.0.0 
+    restart: always
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
+    environment:
+      WORDPRESS_DB_HOST: wordpress:3306
+      WORDPRESS_DB_PASSWORD: wordpress
+    ports:
+      - 8080:80
+    networks:
+      - app
+
+  mysql:
+    image: mysql:5.7.17
+    restart: always
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+    networks:
+      - app
+
+  phpmyadmin:
+    depends_on:
+      - database
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - 8081:80
+    environment:
+      PMA_HOST: wordpress
+      MYSQL_ROOT_PASSWORD: wordpress
+    networks:
+    - app
+
+networks:
+  app:
+volumes:
+  mssql_data:
+  mysql_data:
