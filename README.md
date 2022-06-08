@@ -1,2 +1,2 @@
-# WebService
+# SyncDB webservice
 Webservice for DB syncronization
