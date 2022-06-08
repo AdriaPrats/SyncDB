@@ -1,5 +1,5 @@
 <?php
-define('CONTEXT', 'WebService');
+define('CONTEXT', 'SyncDB');
 
 $request = $_SERVER['REQUEST_URI'];
 $baserequest = basename($request);
