@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/0-connect.css">
-    <title>Connexion</title>
+    <title>Conexion</title>
 </head>
 <body>
     <div class="container">
-        <h1>Connexión a BBDD</h1>
+        <h1>Conexión a BBDD</h1>
         <form action="connect" method="post">
         
             <div class="group">
@@ -41,8 +41,7 @@
             </div>
 
             <div class="buttonDiv">
-                <label for="submit">Si estan todos los valores correctos OK!</label>
-                <button type="submit" name="submit">OK!</button>
+                <button class="button" type="submit" name="submit">Enviar Datos</button>
             </div>
 
         </form>
