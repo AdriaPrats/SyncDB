@@ -14,56 +14,61 @@ services: # Dins aquest apartat s'han d'especificar els serveis que anem a utili
   webservice:
     container_name: webservice
     image: adriaprats/ubuntu_ws:08.06
-    restart: always
+    restart: on-failure
+    command: ["sleep","infinity"] 
+      # Per a que apache funcini una vegada tot iniciat haurem de:
+        # docker ps -a (agafar id de container)
+        # docker exec -it [id] /bin/bash
+          # $ service apache2 restart
     build:
       context: . # Executa el Dockerfile
     ports:
       - 80:80
     volumes:
-      - ./WebService:/var/www/html
+      - ./:/var/www/html/SyncDB
     networks:
       - app
 
-  wordpress:
-    depends_on:
-      - database
-    image: wordpress:6.0.0 
-    restart: always
-    volumes:
-      - ./wp-content:/var/www/html/wp-content
-    environment:
-      WORDPRESS_DB_HOST: wordpress:3306
-      WORDPRESS_DB_PASSWORD: wordpress
-    ports:
-      - 8080:80
-    networks:
-      - app
+  # wordpress:
+  #   depends_on:
+  #     - database
+  #   image: wordpress:6.0.0 
+  #   restart: always
+  #   volumes:
+  #     - ./wp-content:/var/www/html/wp-content
+  #   environment:
+  #     WORDPRESS_DB_HOST: wordpress:3306
+  #     WORDPRESS_DB_PASSWORD: wordpress
+  #   ports:
+  #     - 8080:80
+  #   networks:
+  #     - app
 
-  mysql:
-    image: mysql:5.7.17
-    restart: always
-    volumes:
-      - mysql_data:/var/lib/mysql
-    environment:
-      MYSQL_ROOT_PASSWORD: wordpress
-    networks:
-      - app
+  # mysql:
+  #   image: mysql:5.7.17
+  #   restart: always
+  #   volumes:
+  #     - mysql_data:/var/lib/mysql
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: wordpress
+  #   networks:
+  #     - app
 
-  phpmyadmin:
-    depends_on:
-      - database
-    image: phpmyadmin/phpmyadmin
-    restart: always
-    ports:
-      - 8081:80
-    environment:
-      PMA_HOST: wordpress
-      MYSQL_ROOT_PASSWORD: wordpress
-    networks:
-    - app
+  # phpmyadmin:
+  #   depends_on:
+  #     - database
+  #   image: phpmyadmin/phpmyadmin
+  #   restart: always
+  #   ports:
+  #     - 8081:80
+  #   environment:
+  #     PMA_HOST: wordpress
+  #     MYSQL_ROOT_PASSWORD: wordpress
+  #   networks:
+  #   - app
 
 networks:
   app:
 volumes:
   mssql_data:
-  mysql_data:
+#   mysql_data:
