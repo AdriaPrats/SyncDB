@@ -1,0 +1,15 @@
+* { box-sizing:border-box; }
+
+/* basic stylings ------------------------------------------ */
+body 				 { background: url("../images/0-background.jpg"); }
+.container 		{ 
+    font-family:'Roboto';
+    width:600px; 
+    margin:60px auto 0; 
+    display:block; 
+    background:#FFF;
+    padding:10px 50px 50px;
+    border-radius: 15px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  
+  }

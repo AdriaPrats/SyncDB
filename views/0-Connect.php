@@ -14,28 +14,24 @@
         
             <div class="group">
                 <input type="text" name="connexion_data[server-ip]" value="51.178.144.4">
-                <span class="highlight"></span>
                 <span class="bar"></span>
                 <label for="server-ip">Ip del Servidor</label>
             </div>
 
             <div class="group">
                 <input type="text" name="connexion_data[dbname]" value="adriaon_wp314">
-                <span class="highlight"></span>
                 <span class="bar"></span>
                 <label for="dbname">Nombre BBDD</label>
             </div>
 
             <div class="group">
                 <input type="text" name="connexion_data[user]" value="adriaon_wp314">
-                <span class="highlight"></span>
                 <span class="bar"></span>
                 <label for="user">Nombre Usuario</label>
             </div>
 
             <div class="group">
                 <input type="password" name="connexion_data[password]" value="6CHjnLIQmrNz">
-                <span class="highlight"></span>
                 <span class="bar"></span>
                 <label for="password">Contraseña</label>
             </div>
